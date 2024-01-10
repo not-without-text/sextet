@@ -1,5 +1,5 @@
 <head>
-  <title>Sextet - worded puzzle</title>
+  <title>sextet html</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@550&amp;display=swap" rel="stylesheet">
@@ -23,11 +23,13 @@
       justify-content: center;
       align-items: center;
     }
-    button {
+    button, input {
       border-color: #251501;
       border-width: 10px;
       border-radius: 5px;
       border-style: solid;
+    }
+    button {
       background-color: #966623;
     }
     button:hover {
@@ -36,7 +38,7 @@
     button:active {
       background-color: #deb157;
     }
-    .line {
+    .longer {
       display: block;
       width: 320px;
     }
@@ -47,12 +49,18 @@
       margin-right: 5px;
       padding: 0;
     }
+    input {
+      background-color: #b3af6d
+    }
+    input:focus {
+      background-color: #d1cd77
+    }
     .hidden {
       display: none;
     }
   </style>
   <script>
-    let questions = [
+    let series = [
       [0,"typehi","hi"],
       null,
       [0,"tooths","teeth"],
@@ -73,11 +81,12 @@
       let curDiv = document.createElement("div")
       let number = 1;
       document.querySelector("#levels").appendChild(curDiv)
-      for (let question of questions) {
-        if (question) {
+      for (let puzzle of series) {
+        if (puzzle) {
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
           lvTile.textContent = number.toString()
+          lvTile.onclick = () => reveal(puzzle)
           curDiv.appendChild(lvTile)
           number++
         } else {
@@ -87,22 +96,43 @@
       }
     }
     function launch() {
-      document.querySelector("#menu").classList.add("hidden")
+      document.querySelector("#screen").classList.add("hidden")
       document.querySelector("#levels").classList.remove("hidden")
+      document.querySelector("#puzzle").classList.add("hidden")
+    }
+    function reveal(puzzle) {
+      document.querySelector("#puzzle").classList.remove("hidden")
+      document.querySelector("#levels").classList.add("hidden")
+      if (puzzle[0] === 0) {
+        document.querySelector("#prompt").textContent = puzzle[1]
+        document.querySelector("#bottom").textContent = ""
+      } else {
+        document.querySelector("#bottom").textContent = puzzle[1]
+        document.querySelector("#prompt").textContent = ""
+      }
+      document.querySelector("#answer").onblur = function() {
+        console.log("ok")
+        if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
+          alert("correct")
+        } else {
+          this.value = ""
+        }
+      }
     }
   </script>
 </head>
 
 <body onload="fillup()">
-  <div id="menu">
+  <div id="screen">
     sextet
-    <button class="line" onclick="launch()">launch</button>
-    <button class="line">option</button>
-    <button class="line">credit</button>
+    <button class="longer" onclick="launch()">launch</button>
+    <button class="longer">option</button>
+    <button class="longer">credit</button>
   </div>
   <div id="levels" class="hidden"></div>
   <div id="puzzle" class="hidden">
-    sextet
-    <input class="line">
+    <span id="prompt">sextet</span>
+    <input id="answer" class="longer">
+    <span id="bottom">sextet</span>
   </div>
 </body>
