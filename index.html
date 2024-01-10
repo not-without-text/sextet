@@ -1,5 +1,5 @@
 <head>
-  <title>sextet html</title>
+  <title>sextet - worded puzzle</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@550&amp;display=swap" rel="stylesheet">
@@ -110,14 +110,14 @@
         document.querySelector("#bottom").textContent = puzzle[1]
         document.querySelector("#prompt").textContent = ""
       }
-      document.querySelector("#answer").onblur = function() {
+      document.querySelector("#answer").addEventListener("focusout",function() {
         console.log("ok")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           alert("correct")
         } else {
           this.value = ""
         }
-      }
+      })
     }
   </script>
 </head>
