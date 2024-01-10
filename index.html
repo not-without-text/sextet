@@ -39,12 +39,37 @@
     button:active {
       background-color: #deb157;
     }
+    .hidden {
+      display: none;
+    }
   </style>
+  <script>
+    let questions = [
+      [0,"typehi","hi"],
+      null,
+      [0,"lended","lent"],
+      [0,"seeked","sought"],
+      [0,"burned","burnt"],
+      [1,"strung","stringed"],
+      [0,"canned","could"],
+      [0,"worked","wrought"],
+      [0,"lieded","laid"]
+    ]
+    function launch() {
+      document.querySelector("#menu").classList.add("hidden")
+      document.querySelector("#levels").classList.remove("hidden")
+    }
+  </script>
 </head>
 
 <body>
-  sextet
-  <button>launch</button>
-  <button>option</button>
-  <button>credit</button>
+  <div id="menu">
+    sextet
+    <button onclick="launch()">launch</button>
+    <button>option</button>
+    <button>credit</button>
+  </div>
+  <div id="levels" class="hidden">
+    test
+  </div>
 </body>
