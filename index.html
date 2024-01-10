@@ -110,14 +110,14 @@
         document.querySelector("#bottom").textContent = puzzle[1]
         document.querySelector("#prompt").textContent = ""
       }
-      document.querySelector("#answer").addEventListener("focusout",function() {
+      document.querySelector("#answer").onblur = document.querySelector("#answer").onchange = function() {
         console.log("ok")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           alert("correct")
         } else {
           this.value = ""
         }
-      })
+      }
     }
   </script>
 </head>
