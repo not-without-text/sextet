@@ -79,13 +79,14 @@
     ]
     function loadup() {
       let curDiv = document.createElement("div")
+      let create = (number => () => reveal(number))
       let number = 0;
       document.querySelector("#levels").appendChild(curDiv)
       for (let puzzle of series) {
         if (puzzle) {
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
-          lvTile.onclick = () => reveal(number)
+          lvTile.onclick = create(number)
           number++
           lvTile.textContent = number.toString()
           curDiv.appendChild(lvTile)
