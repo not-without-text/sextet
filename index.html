@@ -36,11 +36,11 @@
     button:active {
       background-color: #deb157;
     }
-    button.line {
+    .line {
       display: block;
       width: 320px;
     }
-    button.square {
+    .square {
       width: 120px;
       display: inline-block;
       margin-left: 5px;
@@ -69,17 +69,17 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
-    function load() {
+    function fillup() {
       let curDiv = document.createElement("div")
-      let num = 1;
+      let number = 1;
       document.querySelector("#levels").appendChild(curDiv)
       for (let question of questions) {
         if (question) {
-          let levelButton = document.createElement("button");
-          levelButton.classList.add("square")
-          levelButton.textContent = num.toString()
-          curDiv.appendChild(levelButton)
-          num++
+          let lvTile = document.createElement("button");
+          lvTile.classList.add("square")
+          lvTile.textContent = number.toString()
+          curDiv.appendChild(lvTile)
+          number++
         } else {
           curDiv = document.createElement("div")
           document.querySelector("#levels").appendChild(curDiv)
@@ -93,7 +93,7 @@
   </script>
 </head>
 
-<body onload="load()">
+<body onload="fillup()">
   <div id="menu">
     sextet
     <button class="line" onclick="launch()">launch</button>
@@ -101,4 +101,8 @@
     <button class="line">credit</button>
   </div>
   <div id="levels" class="hidden"></div>
+  <div id="puzzle" class="hidden">
+    sextet
+    <input class="line">
+  </div>
 </body>
