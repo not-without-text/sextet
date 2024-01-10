@@ -77,18 +77,18 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
-    function fillup() {
+    function loadup() {
       let curDiv = document.createElement("div")
-      let number = 1;
+      let number = 0;
       document.querySelector("#levels").appendChild(curDiv)
       for (let puzzle of series) {
         if (puzzle) {
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
-          lvTile.textContent = number.toString()
-          lvTile.onclick = () => reveal(puzzle)
-          curDiv.appendChild(lvTile)
+          lvTile.onclick = () => reveal(number)
           number++
+          lvTile.textContent = number.toString()
+          curDiv.appendChild(lvTile)
         } else {
           curDiv = document.createElement("div")
           document.querySelector("#levels").appendChild(curDiv)
@@ -100,7 +100,8 @@
       document.querySelector("#levels").classList.remove("hidden")
       document.querySelector("#puzzle").classList.add("hidden")
     }
-    function reveal(puzzle) {
+    function reveal(number) {
+      let puzzle = series[number]
       document.querySelector("#puzzle").classList.remove("hidden")
       document.querySelector("#levels").classList.add("hidden")
       if (puzzle[0] === 0) {
@@ -110,10 +111,15 @@
         document.querySelector("#bottom").textContent = puzzle[1]
         document.querySelector("#prompt").textContent = ""
       }
-      document.querySelector("#answer").onblur = document.querySelector("#answer").onchange = function() {
-        console.log("ok")
+      document.querySelector("#answer").onchange = function() {
+        console.log("checking")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
-          alert("correct")
+          if (series[number+1]) {
+            reveal(number+1)
+          } else {
+            document.querySelector("#puzzle").classList.add("hidden")
+            document.querySelector("#levels").classList.remove("hidden")
+          }
         } else {
           this.value = ""
         }
@@ -122,7 +128,7 @@
   </script>
 </head>
 
-<body onload="fillup()">
+<body onload="loadup()">
   <div id="screen">
     sextet
     <button class="longer" onclick="launch()">launch</button>
