@@ -70,15 +70,15 @@
     ]
     function load() {
       let curDiv = document.createElement("div")
-      let question = 1;
+      let num = 1;
       document.querySelector("#levels").appendChild(curDiv)
       for (let question of questions) {
         if (question) {
           let levelButton = document.createElement("button");
           levelButton.classList.add("square")
-          levelButton.textContent = question.toString()
+          levelButton.textContent = num.toString()
           curDiv.appendChild(levelButton)
-          question++
+          num++
         } else {
           curDiv = document.createElement("div")
           document.querySelector("#levels").appendChild(curDiv)
