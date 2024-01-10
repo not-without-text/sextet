@@ -21,12 +21,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
     }
     button {
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      width: 320px;
       border-color: #251501;
       border-width: 10px;
       border-radius: 5px;
@@ -38,6 +35,16 @@
     }
     button:active {
       background-color: #deb157;
+    }
+    button.line {
+      display: block;
+      width: 320px;
+    }
+    button.square {
+      width: 120px;
+      display: inline-block;
+      margin-left: 5px;
+      margin-right: 5px;
     }
     .hidden {
       display: none;
@@ -61,6 +68,23 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
+    function load() {
+      let curDiv = document.createElement("div")
+      let question = 1;
+      document.querySelector("#levels").appendChild(curDiv)
+      for (let question of questions) {
+        if (question) {
+          let levelButton = document.createElement("button");
+          levelButton.classList.add("square")
+          levelButton.textContent = question.toString()
+          curDiv.appendChild(levelButton)
+          question++
+        } else {
+          curDiv = document.createElement("div")
+          document.querySelector("#levels").appendChild(curDiv)
+        }
+      }
+    }
     function launch() {
       document.querySelector("#menu").classList.add("hidden")
       document.querySelector("#levels").classList.remove("hidden")
@@ -68,14 +92,12 @@
   </script>
 </head>
 
-<body>
+<body onload="load()">
   <div id="menu">
     sextet
-    <button onclick="launch()">launch</button>
-    <button>option</button>
-    <button>credit</button>
+    <button class="line" onclick="launch()">launch</button>
+    <button class="line">option</button>
+    <button class="line">credit</button>
   </div>
-  <div id="levels" class="hidden">
-    test
-  </div>
+  <div id="levels" class="hidden"></div>
 </body>
