@@ -83,7 +83,7 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
-    let solved = (localStorage.getItem("solved") || "").split(",").map(x => +x)
+    let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(",").map(x => +x) : []
     let blocks = []
     function loadup() {
       let curDiv = document.createElement("div")
@@ -156,7 +156,7 @@
   </div>
   <div id="levels" class="hidden"></div>
   <div id="option" class="hidden">
-    <button class="longer">newrun</button>
+    <button class="longer" onclick="localStorage.removeItem('solved');solved=[]">newrun</button>
     <button class="longer" onclick="moveTo('screen')">return</button>
   </div>
   <div id="puzzle" class="hidden">
