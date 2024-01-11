@@ -144,6 +144,10 @@
       document.querySelector("#"+sector).classList.remove("hidden")
       curAct = sector
     }
+    function newRun() {
+      localStorage.removeItem('solved')
+      solved=[]
+    }
   </script>
 </head>
 
@@ -156,7 +160,7 @@
   </div>
   <div id="levels" class="hidden"></div>
   <div id="option" class="hidden">
-    <button class="longer" onclick="localStorage.removeItem('solved');solved=[]">newrun</button>
+    <button class="longer" onclick="newRun()">newrun</button>
     <button class="longer" onclick="moveTo('screen')">return</button>
   </div>
   <div id="puzzle" class="hidden">
