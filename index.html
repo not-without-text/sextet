@@ -104,6 +104,7 @@
     }
     function reveal(number) {
       let puzzle = series[number]
+      this.value = ""
       document.querySelector("#puzzle").classList.remove("hidden")
       document.querySelector("#levels").classList.add("hidden")
       if (puzzle[0] === 0) {
