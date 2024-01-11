@@ -83,7 +83,7 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
-    let solved = localStorage.getItem("solved").split(",").map(x => +x) || []
+    let solved = (localStorage.getItem("solved") || "").split(",").map(x => +x)
     let blocks = []
     function loadup() {
       let curDiv = document.createElement("div")
