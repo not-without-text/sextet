@@ -104,7 +104,7 @@
     }
     function reveal(number) {
       let puzzle = series[number]
-      this.value = ""
+      document.querySelector("#answer").value = ""
       document.querySelector("#puzzle").classList.remove("hidden")
       document.querySelector("#levels").classList.add("hidden")
       if (puzzle[0] === 0) {
@@ -118,7 +118,7 @@
         console.log("checking")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           if (series[number+1]) {
-            reveal.call(this,number+1)
+            reveal(number+1)
           } else {
             document.querySelector("#puzzle").classList.add("hidden")
             document.querySelector("#levels").classList.remove("hidden")
