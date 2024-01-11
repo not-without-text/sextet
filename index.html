@@ -118,7 +118,7 @@
         console.log("checking")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           if (series[number+1]) {
-            reveal(number+1)
+            reveal.call(this,number+1)
           } else {
             document.querySelector("#puzzle").classList.add("hidden")
             document.querySelector("#levels").classList.remove("hidden")
