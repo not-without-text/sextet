@@ -38,7 +38,7 @@
     button:active {
       background-color: #deb157;
     }
-    button:disabled {
+    button:disabled, .solved {
       background-color: #917d60;
       color: #635541;
       border-color: #635541;
@@ -83,6 +83,8 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
+    let solved = localStorage.getItem("solved").split(",").map(x => +x) || []
+    let blocks = []
     function loadup() {
       let curDiv = document.createElement("div")
       let create = marker => () => reveal(marker)
@@ -93,13 +95,16 @@
         if (puzzle) {
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
+          if (solved.includes(marker)) lvTile.classList.add("solved")
           lvTile.onclick = create(marker)
           number++
           lvTile.textContent = number.toString()
           curDiv.appendChild(lvTile)
+          blocks.push(lvTile)
         } else {
           curDiv = document.createElement("div")
           document.querySelector("#levels").appendChild(curDiv)
+          blocks.push(null)
         }
       }
       document.querySelector("#gameOn").disabled = false
@@ -119,6 +124,11 @@
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
+          if (!solved.includes(number)) {
+            solved.push(number)
+            localStorage.setItem("solved",solved.toString())
+            blocks[number].classList.add("solved")
+          }
           if (series[number+1]) {
             reveal(number+1)
           } else {
