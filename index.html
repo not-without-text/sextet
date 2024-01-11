@@ -38,6 +38,11 @@
     button:active {
       background-color: #deb157;
     }
+    button:disabled {
+      background-color: #917d60;
+      color: #635541;
+      border-color: #635541;
+    }
     .longer {
       display: block;
       width: 320px;
@@ -60,6 +65,7 @@
     }
   </style>
   <script>
+    let curAct = "screen"
     let series = [
       [0,"typehi","hi"],
       null,
@@ -96,17 +102,12 @@
           document.querySelector("#levels").appendChild(curDiv)
         }
       }
-    }
-    function launch() {
-      document.querySelector("#screen").classList.add("hidden")
-      document.querySelector("#levels").classList.remove("hidden")
-      document.querySelector("#puzzle").classList.add("hidden")
+      document.querySelector("#gameOn").disabled = false
     }
     function reveal(number) {
       let puzzle = series[number]
       document.querySelector("#answer").value = ""
-      document.querySelector("#puzzle").classList.remove("hidden")
-      document.querySelector("#levels").classList.add("hidden")
+      moveTo("puzzle")
       if (puzzle[0] === 0) {
         document.querySelector("#prompt").textContent = puzzle[1]
         document.querySelector("#bottom").textContent = ""
@@ -121,13 +122,17 @@
           if (series[number+1]) {
             reveal(number+1)
           } else {
-            document.querySelector("#puzzle").classList.add("hidden")
-            document.querySelector("#levels").classList.remove("hidden")
+            moveTo("levels")
           }
         } else {
           this.value = ""
         }
       }
+    }
+    function moveTo(sector) {
+      document.querySelector("#"+curAct).classList.add("hidden")
+      document.querySelector("#"+sector).classList.remove("hidden")
+      curAct = sector
     }
   </script>
 </head>
@@ -135,11 +140,15 @@
 <body onload="loadup()">
   <div id="screen">
     sextet
-    <button class="longer" onclick="launch()">launch</button>
-    <button class="longer">option</button>
+    <button id="gameOn" class="longer" onclick="moveTo('levels')" disabled>launch</button>
+    <button class="longer" onclick="moveTo('option')">option</button>
     <button class="longer">credit</button>
   </div>
   <div id="levels" class="hidden"></div>
+  <div id="option" class="hidden">
+    <button class="longer">newrun</button>
+    <button class="longer" onclick="moveTo('screen')">return</button>
+  </div>
   <div id="puzzle" class="hidden">
     <span id="prompt">sextet</span>
     <input id="answer" class="longer">
