@@ -152,6 +152,7 @@
         document.querySelector("#bottom").textContent = puzzle[1]
         document.querySelector("#prompt").textContent = ""
       }
+      document.querySelector("#answer").scrollIntoView(false);
       document.querySelector("#answer").focus()
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
