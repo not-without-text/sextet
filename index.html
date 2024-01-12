@@ -187,6 +187,7 @@
       for (let number of solved) {
         blocks[number].classList.remove("solved")
       }
+      document.querySelector("#metric").textContent = document.querySelector("#gauge2").textContent = "solved: 0"
       solved = []
       moveTo("screen")
     }
