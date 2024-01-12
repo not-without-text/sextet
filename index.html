@@ -85,7 +85,7 @@
       bottom: 0px;
       left: 50%
     }
-    #metric {
+    #metric, #gauge2 {
       top: 0px;
       left: 0px
     }
@@ -165,7 +165,7 @@
             solved.push(marker)
             localStorage.setItem("solved",solved.toString())
             blocks[marker].classList.add("solved")
-            document.querySelector("#metric").textContent = document.querySelector("#gauge2").textContent = "solved: "+solved.length
+            document.querySelector("#metric").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: "+solved.length
           }
           if (series[marker+1]) {
             reveal(marker+1,number+1)
@@ -187,7 +187,7 @@
       for (let number of solved) {
         blocks[number].classList.remove("solved")
       }
-      document.querySelector("#metric").textContent = document.querySelector("#gauge2").textContent = "solved: 0"
+      document.querySelector("#metric").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: 0"
       solved = []
       moveTo("screen")
     }
@@ -203,9 +203,10 @@
   </div>
   <div id="levels" class="hidden">
     <button class="little" style="top:0px;right:0px" onclick="moveTo('screen')">return</button>
+    <span id="gauge2" class="little">solved: 0</span>
   </div>
   <div id="option" class="hidden">
-    <span id="gauge2">solved: 0</span>
+    <span id="gauge3">solved: 0</span>
     <div id="center">
       <button class="longer" onclick="newRun()">newrun</button>
       <button class="longer" onclick="moveTo('screen')">return</button>
