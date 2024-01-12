@@ -15,7 +15,7 @@
       height: 100%;
       margin: 0;
     }
-    body {
+    body, #center {
       background-color: #d9d69c;
       display: flex;
       flex-direction: column;
@@ -205,8 +205,10 @@
   </div>
   <div id="option" class="hidden">
     <span id="gauge2">solved: 0</span>
-    <button class="longer" onclick="newRun()">newrun</button>
-    <button class="longer" onclick="moveTo('screen')">return</button>
+    <div id="center">
+      <button class="longer" onclick="newRun()">newrun</button>
+      <button class="longer" onclick="moveTo('screen')">return</button>
+    </div>
   </div>
   <div id="puzzle" class="hidden">
     <span id="levNum">-1-</span>
