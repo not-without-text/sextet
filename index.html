@@ -9,8 +9,7 @@
       font-size: 80px;
       text-align: center;
       color: #4a2b01;
-      margin-top: 5px;
-      margin-bottom: 5px;
+      margin: 5px;
     }
     html, body {
       height: 100%;
@@ -32,10 +31,14 @@
     button {
       background-color: #966623;
     }
-    button:hover {
+    button:hover, button:focus {
+      border-color: #251501;
+      color: #4a2b01;
       background-color: #c28a3c;
     }
     button:active {
+      border-color: #251501;
+      color: #4a2b01;
       background-color: #deb157;
     }
     button:disabled, .solved {
@@ -60,8 +63,27 @@
     input:focus {
       background-color: #d1cd77
     }
+    .little {
+      font-size: 40px;
+      position: absolute;
+    }
     .hidden {
       display: none;
+    }
+    #levNum {
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      margin-left: 0;
+      transform: translate(-50%,0)
+    }
+    #former {
+      bottom: 0px;
+      right: 50%
+    }
+    #coming {
+      bottom: 0px;
+      left: 50%
     }
   </style>
   <script>
@@ -87,7 +109,8 @@
     let blocks = []
     function loadup() {
       let curDiv = document.createElement("div")
-      let create = marker => () => reveal(marker)
+      curDiv.style.marginBottom = "25px"
+      let create = (marker,number) => () => reveal(marker,number)
       let number = 0;
       document.querySelector("#levels").appendChild(curDiv)
       for (let marker=0;marker<series.length;marker++) {
@@ -96,22 +119,31 @@
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
           if (solved.includes(marker)) lvTile.classList.add("solved")
-          lvTile.onclick = create(marker)
+          lvTile.onclick = create(marker,number)
           number++
           lvTile.textContent = number.toString()
           curDiv.appendChild(lvTile)
           blocks.push(lvTile)
         } else {
           curDiv = document.createElement("div")
+          curDiv.style.marginBottom = "15px"
           document.querySelector("#levels").appendChild(curDiv)
           blocks.push(null)
         }
       }
       document.querySelector("#gameOn").disabled = false
     }
-    function reveal(number) {
-      let puzzle = series[number]
+    function reveal(marker,number) {
+      let puzzle = series[marker]
       document.querySelector("#answer").value = ""
+      document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
+      
+      document.querySelector("#former").onclick = () => reveal(marker-1,number-1)
+      document.querySelector("#coming").onclick = () => reveal(marker+1,number+1)
+      
+      document.querySelector("#former").disabled = !series[marker-1]
+      document.querySelector("#coming").disabled = !series[marker+1]
+      
       moveTo("puzzle")
       if (puzzle[0] === 0) {
         document.querySelector("#prompt").textContent = puzzle[1]
@@ -124,13 +156,13 @@
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
-          if (!solved.includes(number)) {
-            solved.push(number)
+          if (!solved.includes(marker)) {
+            solved.push(marker)
             localStorage.setItem("solved",solved.toString())
-            blocks[number].classList.add("solved")
+            blocks[marker].classList.add("solved")
           }
-          if (series[number+1]) {
-            reveal(number+1)
+          if (series[marker+1]) {
+            reveal(marker+1,number+1)
           } else {
             moveTo("levels")
           }
@@ -150,6 +182,7 @@
         blocks[number].classList.remove("solved")
       }
       solved = []
+      moveTo("screen")
     }
   </script>
 </head>
@@ -161,14 +194,20 @@
     <button class="longer" onclick="moveTo('option')">option</button>
     <button class="longer">credit</button>
   </div>
-  <div id="levels" class="hidden"></div>
+  <div id="levels" class="hidden">
+    <button class="little" style="top:0px;right:0px" onclick="moveTo('screen')">return</button>
+  </div>
   <div id="option" class="hidden">
     <button class="longer" onclick="newRun()">newrun</button>
     <button class="longer" onclick="moveTo('screen')">return</button>
   </div>
   <div id="puzzle" class="hidden">
+    <span id="levNum">-1-</span>
     <span id="prompt">sextet</span>
     <input id="answer" class="longer">
     <span id="bottom">sextet</span>
+    <button id="former" class="little">&lt; former</button>
+    <button id="coming" class="little">coming &gt;</button>
+    <button class="little" style="top:0px;right:0px" onclick="moveTo('levels')">return</button>
   </div>
 </body>
