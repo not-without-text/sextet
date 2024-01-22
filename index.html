@@ -136,6 +136,7 @@
         }
       }
       document.querySelector("#gameOn").disabled = false
+      document.querySelector("#metric").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: "+solved.length
     }
     function reveal(marker,number) {
       let puzzle = series[marker]
