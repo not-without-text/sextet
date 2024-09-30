@@ -184,10 +184,12 @@
             localStorage.setItem("solved",solved.toString())
             blocks[marker].classList.add("solved")
             document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: "+solved.length
-            try { if (solved.length >= unlock[target] && blocks[target]) {
-              blocks[target].forEach(x => x.disabled = false)
+            if (solved.length >= unlock[target] && document.querySelectorAll("#levels > div")[target]) {
+              for (let x of document.querySelectorAll("#levels > div")[target].children) {
+                x.disabled = false
+              }
               target++
-            }} catch (e) {alert(e)}
+            }
           }
           if (series[marker+1]) {
             reveal(marker+1,number+1)
