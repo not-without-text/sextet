@@ -130,6 +130,7 @@
       curDiv.style.marginBottom = "25px"
       let create = (marker,number) => () => reveal(marker,number)
       let number = 0;
+      let levels = 0;
       document.querySelector("#levels").appendChild(curDiv)
       for (let marker=0;marker<series.length;marker++) {
         let puzzle = series[marker]
@@ -137,7 +138,7 @@
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
           if (solved.includes(marker)) lvTile.classList.add("solved")
-          if (marker && unlock[blocks.length-1] > solved.length) lvTile.disabled = true
+          if (marker && unlock[levels] > solved.length) lvTile.disabled = true
           lvTile.onclick = create(marker,number)
           number++
           lvTile.textContent = number.toString()
@@ -148,6 +149,7 @@
           curDiv.style.marginBottom = "15px"
           document.querySelector("#levels").appendChild(curDiv)
           blocks.push(null)
+          levels++
         }
       }
       document.querySelector("#gameOn").disabled = false
