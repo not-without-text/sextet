@@ -102,7 +102,7 @@
   </style>
   <script>
     let curAct = "screen"
-    let series = [
+    const series = [
       [0,"typehi","hi"],
       null,
       [0,"tooths","teeth"],
@@ -121,7 +121,9 @@
       [0,"worked","wrought"],
       [0,"lieded","laid"]
     ]
+    let unlock = [0,1,5]
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(",").map(x => +x) : []
+    let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
     function loadup() {
       let curDiv = document.createElement("div")
@@ -135,6 +137,7 @@
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
           if (solved.includes(marker)) lvTile.classList.add("solved")
+          if (marker && unlock[blocks.length-1] > solved.length) lvTile.disabled = true
           lvTile.onclick = create(marker,number)
           number++
           lvTile.textContent = number.toString()
@@ -179,6 +182,10 @@
             localStorage.setItem("solved",solved.toString())
             blocks[marker].classList.add("solved")
             document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: "+solved.length
+            if (solved.length >= unlock[target]) {
+              blocks[target].forEach(x => x.disabled = false)
+              target++
+            }
           }
           if (series[marker+1]) {
             reveal(marker+1,number+1)
