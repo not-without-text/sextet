@@ -209,6 +209,7 @@
             if (solved.length >= unlock[target] && document.querySelectorAll("#levels > div")[target]) {
               for (let x of document.querySelectorAll("#levels > div")[target].children) {
                 x.disabled = false
+                x.children[1].textContent = "\u00A0"
               }
               target++
             }
@@ -240,7 +241,7 @@
           continue
         }
         block.disabled = true
-        block.children[1].textContent = unlock[stages] === 1 ? "1 puzzle" + unlock[stages] + " solves"
+        block.children[1].textContent = unlock[stages] === 1 ? "1 puzzle" : unlock[stages] + " solves"
       }
       document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: 0"
       solved = []
