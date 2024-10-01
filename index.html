@@ -99,6 +99,16 @@
       top: 0px;
       left: 0px
     }
+    .lowRow {
+      transform: translate(0,50%);
+      margin-top: -45%;
+      margin-bottom: 15%;
+      font-size: 30%;
+    }
+    .numDiv {
+      margin: 0;
+      transform: translate(0, -10%);
+    }
   </style>
   <script>
     let curAct = "screen"
@@ -141,7 +151,17 @@
           if (marker && unlock[stages] > solved.length) lvTile.disabled = true
           lvTile.onclick = create(marker,number)
           number++
-          lvTile.textContent = number.toString()
+          let numDiv = document.createElement("div")
+          numDiv.textContent = number.toString()
+          numDiv.classList.add("numDiv")
+          lvTile.appendChild(numDiv)
+          let lowRow = document.createElement("div")
+          lowRow.classList.add("lowRow")
+          if (!(marker && unlock[stages] > solved.length)) {
+            lowRow.textContent = unlock[stages] + " solves"
+          }
+          lvTile.appendChild(numDiv)
+          lvTile.appendChild(lowRow)
           curDiv.appendChild(lvTile)
           blocks.push(lvTile)
         } else {
@@ -210,7 +230,9 @@
       localStorage.removeItem('solved')
       for (let number of solved) {
         blocks[number].classList.remove("solved")
-        if (number) blocks[number].disabled = true
+      }
+      for (let block of blocks.slice(1)) {
+        block.disabled = true
       }
       document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: 0"
       solved = []
