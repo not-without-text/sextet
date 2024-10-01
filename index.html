@@ -210,9 +210,11 @@
       localStorage.removeItem('solved')
       for (let number of solved) {
         blocks[number].classList.remove("solved")
+        if (number) blocks[number].disabled = true
       }
       document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: 0"
       solved = []
+      target = 0
     }
   </script>
 </head>
