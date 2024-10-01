@@ -158,7 +158,7 @@
           let lowRow = document.createElement("div")
           lowRow.classList.add("lowRow")
           if (marker && unlock[stages] > solved.length) {
-            lowRow.textContent = unlock[stages] === 1 ? "1 puzzle" + unlock[stages] + " solves"
+            lowRow.textContent = unlock[stages] === 1 ? "1 puzzle" : unlock[stages] + " solves"
           } else {
             lowRow.textContent = "\u00A0" // non-breaking space
           }
