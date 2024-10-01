@@ -100,10 +100,10 @@
       left: 0px
     }
     .lowRow {
-      transform: translate(0,50%);
-      margin-top: -45%;
-      margin-bottom: 15%;
-      font-size: 30%;
+      transform: translate(0,100%);
+      margin-top: -50%;
+      margin-bottom: 30%;
+      font-size: 20%;
     }
     .numDiv {
       margin: 0;
@@ -157,7 +157,9 @@
           lvTile.appendChild(numDiv)
           let lowRow = document.createElement("div")
           lowRow.classList.add("lowRow")
-          if (!(marker && unlock[stages] > solved.length)) {
+          if (marker && unlock[stages] > solved.length) {
+            lowRow.textContent = "\u00A0" // non-breaking space
+          } else {
             lowRow.textContent = unlock[stages] + " solves"
           }
           lvTile.appendChild(numDiv)
