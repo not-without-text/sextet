@@ -158,9 +158,9 @@
           let lowRow = document.createElement("div")
           lowRow.classList.add("lowRow")
           if (marker && unlock[stages] > solved.length) {
-            lowRow.textContent = "\u00A0" // non-breaking space
-          } else {
             lowRow.textContent = unlock[stages] + " solves"
+          } else {
+            lowRow.textContent = "\u00A0" // non-breaking space
           }
           lvTile.appendChild(numDiv)
           lvTile.appendChild(lowRow)
