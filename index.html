@@ -136,6 +136,7 @@
       null,
       [0,"tooths","teeth"],
       [0,"sheeps","sheep"],
+      [0,"datums","data"],
       [0,"axises","axes"],
       [1,"stadia","stadiums"],
       [0,"opuses","opera"],
@@ -148,6 +149,7 @@
       [1,"strung","stringed"],
       [0,"canned","could"],
       [0,"worked","wrought"],
+      [0,"underf","underfeed"],
       [0,"lieded","laid"],
       null,
       [0,"sayhey","hey"],
@@ -155,11 +157,14 @@
       [0,"syxcto","execution"],
       [0,"sqnfao","quantification","quantifications"],
       [0,"tbzxiz","why"],
+      [0,"fnlubj","how"],
+      null,
+      [0,"ffaabb","pink"]
     ]
     function letLen(length) {
       return "calc(" + length + "ch + 32px)"
     }
-    let unlock = [0,1,5,10]
+    let unlock = [0,1,6,11,14]
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(";").map(x => [+x.split(",")[0],x.split(",")[1]]) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
