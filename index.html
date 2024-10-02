@@ -189,6 +189,7 @@
             lowRow.textContent = unlock[stages] === 1 ? "1 puzzle" : unlock[stages] + " solves"
           } else {
             lowRow.textContent = "\u00A0" // non-breaking space
+            lowRow.display = "none"
           }
           lvTile.appendChild(numDiv)
           lvTile.appendChild(lowRow)
@@ -249,6 +250,7 @@
               for (let x of document.querySelectorAll("#levels > div")[target].children) {
                 x.disabled = false
                 x.children[1].textContent = "\u00A0"
+                x.children[1].style.display = "none"
               }
               target++
             }
@@ -287,6 +289,7 @@
           continue
         }
         block.disabled = true
+        block.children[1].style.display = ""
         block.children[1].textContent = unlock[stages] === 1 ? "1 puzzle" : unlock[stages] + " solves"
       }
       document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: 0"
