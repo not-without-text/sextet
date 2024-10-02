@@ -155,6 +155,9 @@
       [0,"sqnfao","quantification","quantifications"],
       [0,"tbzxiz","why"],
     ]
+    function letLen(length) {
+      return "calc(" + length + "ch + 32px)"
+    }
     let unlock = [0,1,5,10]
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(";").map(x => [+x.split(",")[0],x.split(",")[1]]) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
@@ -208,10 +211,11 @@
       document.querySelector("#answer").value = ""
       if (ansInd === -1) {
         document.querySelector("#answer").placeholder = ""
+        document.querySelector("#answer").style.width = letLen(6)
       } else {
         document.querySelector("#answer").placeholder = solved[ansInd][1]
         let length = Math.max(6, solved[ansInd][1].length)
-        this.style.width  = "calc(" + length + "ch + 80px)"
+        document.querySelector("#answer").style.width = letLen(length)
       }
       document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
       
@@ -234,7 +238,7 @@
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
         let length = Math.max(6, (this.value || this.placeholder).length)
-        this.style.width  = "calc(" + length + "ch + 80px)"
+        this.style.width  = letLen(length)
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           if (ansInd === -1) {
             solved.push([marker,this.value])
@@ -263,7 +267,7 @@
       }
       document.querySelector("#answer").oninput = function() {
         let length = Math.max(6, (this.value || this.placeholder).length)
-        this.style.width  = "calc(" + length + "ch + 80px)"
+        this.style.width = letLen(length)
       }
     }
     function moveTo(sector) {
