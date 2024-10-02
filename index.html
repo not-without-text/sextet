@@ -206,7 +206,9 @@
       let puzzle = series[marker]
       let ansInd = solved.findIndex(x => x[0] === marker)
       document.querySelector("#answer").value = ""
-      if (ansInd !== -1) {
+      if (ansInd === -1) {
+        document.querySelector("#answer").placeholder = ""
+      } else {
         document.querySelector("#answer").placeholder = solved[ansInd][1]
       }
       document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
