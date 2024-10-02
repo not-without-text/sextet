@@ -211,7 +211,7 @@
       } else {
         document.querySelector("#answer").placeholder = solved[ansInd][1]
         let length = Math.max(6, solved[ansInd][1].length)
-        this.style.width  = (length * 40 + 80) + "px"
+        this.style.width  = "calc(" + length + "ch + 80px)"
       }
       document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
       
@@ -233,6 +233,8 @@
       document.querySelector("#answer").focus()
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
+        let length = Math.max(6, (this.value || this.placeholder).length)
+        this.style.width  = "calc(" + length + "ch + 80px)"
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           if (ansInd === -1) {
             solved.push([marker,this.value])
@@ -261,7 +263,7 @@
       }
       document.querySelector("#answer").oninput = function() {
         let length = Math.max(6, (this.value || this.placeholder).length)
-        this.style.width  = (length * 40 + 80) + "px"
+        this.style.width  = "calc(" + length + "ch + 80px)"
       }
     }
     function moveTo(sector) {
