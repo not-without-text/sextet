@@ -112,10 +112,17 @@
       margin-top: -50%;
       margin-bottom: 30%;
       font-size: 20%;
+      margin-left: -100%;
+      margin-right: -100%;
     }
     .numDiv {
       margin: 0;
       transform: translate(0, -10%);
+    }
+    .sesqui {
+      transform: translate(0, calc(-0.4em - 5px / 2));
+      margin-top: calc(0.5em + 5px / 2);
+      font-size: 0.7em;
     }
   </style>
   <script>
@@ -168,6 +175,7 @@
           let numDiv = document.createElement("div")
           numDiv.textContent = number.toString()
           numDiv.classList.add("numDiv")
+          if (number > 99) numDiv.classList.add("sesqui")
           lvTile.appendChild(numDiv)
           let lowRow = document.createElement("div")
           lowRow.classList.add("lowRow")
