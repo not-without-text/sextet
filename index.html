@@ -210,7 +210,7 @@
         document.querySelector("#answer").placeholder = ""
       } else {
         document.querySelector("#answer").placeholder = solved[ansInd][1]
-        let length = Math.min(6, solved[ansInd][1].length)
+        let length = Math.max(6, solved[ansInd][1].length)
         this.style.width  = (length * 40 + 80) + "px"
       }
       document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
@@ -260,7 +260,7 @@
         }
       }
       document.querySelector("#answer").oninput = function() {
-        let length = Math.min(6, (this.value || this.placeholder).length)
+        let length = Math.max(6, (this.value || this.placeholder).length)
         this.style.width  = (length * 40 + 80) + "px"
       }
     }
