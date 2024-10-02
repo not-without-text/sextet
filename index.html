@@ -137,9 +137,15 @@
       [1,"strung","stringed"],
       [0,"canned","could"],
       [0,"worked","wrought"],
-      [0,"lieded","laid"]
+      [0,"lieded","laid"],
+      null,
+      [0,"sayhey","hey"],
+      [0,"eybyas","bye"],
+      [0,"syxcto","execution"],
+      [0,"sqnfao","quantification","quantifications"],
+      [0,"tbzxiz","why"],
     ]
-    let unlock = [0,1,5]
+    let unlock = [0,1,5,10]
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(",").map(x => +x) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
