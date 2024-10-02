@@ -237,7 +237,7 @@
       document.querySelector("#answer").focus()
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
-        let length = Math.max(6, (this.value || this.placeholder).length)
+        let length = Math.max(6, this.placeholder.length)
         this.style.width  = letLen(length)
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
           if (ansInd === -1) {
