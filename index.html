@@ -78,6 +78,9 @@
     input {
       background-color: #b3af6d
     }
+    input::placeholder {
+      color: #797752;
+    }
     input:focus {
       background-color: #d1cd77
     }
@@ -153,7 +156,7 @@
       [0,"tbzxiz","why"],
     ]
     let unlock = [0,1,5,10]
-    let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(",").map(x => +x) : []
+    let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(";").map(x => [+x.split(",")[0],x.split(",")[1]]) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
     function loadup() {
@@ -168,7 +171,7 @@
         if (puzzle) {
           let lvTile = document.createElement("button");
           lvTile.classList.add("square")
-          if (solved.includes(marker)) lvTile.classList.add("solved")
+          if (solved.some(x => x[0] === marker)) lvTile.classList.add("solved")
           if (marker && unlock[stages] > solved.length) lvTile.disabled = true
           lvTile.onclick = create(marker,number)
           number++
@@ -201,7 +204,11 @@
     }
     function reveal(marker,number) {
       let puzzle = series[marker]
+      let ansInd = solved.findIndex(x => x[0] === marker)
       document.querySelector("#answer").value = ""
+      if (ansInd !== -1) {
+        document.querySelector("#answer").placeholder = solved[ansInd][1]
+      }
       document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
       
       document.querySelector("#former").onclick = () => reveal(marker-1,number-1)
@@ -223,9 +230,9 @@
       document.querySelector("#answer").onchange = function() {
         console.log("checking")
         if (puzzle.indexOf(this.value.toLowerCase()) > 1) {
-          if (!solved.includes(marker)) {
-            solved.push(marker)
-            localStorage.setItem("solved",solved.toString())
+          if (ansInd === -1) {
+            solved.push([marker,this.value])
+            localStorage.setItem("solved",solved.join(";"))
             blocks[marker].classList.add("solved")
             document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: "+solved.length
             if (solved.length >= unlock[target] && document.querySelectorAll("#levels > div")[target]) {
@@ -235,6 +242,9 @@
               }
               target++
             }
+          } else if (solved[ansInd][1].toLowerCase() !== this.value.toLowerCase()) {
+            solved[ansInd][1] = this.value
+            localStorage.setItem("solved",solved.join(";"))
           }
           if (series[marker+1]) {
             reveal(marker+1,number+1)
@@ -254,7 +264,7 @@
     function newRun() {
       localStorage.removeItem('solved')
       for (let number of solved) {
-        blocks[number].classList.remove("solved")
+        blocks[number[0]].classList.remove("solved")
       }
       let stages = 0
       for (let block of blocks.slice(1)) {
