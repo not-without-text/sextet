@@ -252,7 +252,7 @@
               }
               target++
             }
-          } else if (solved[ansInd][1].toLowerCase() !== this.value.toLowerCase()) {
+          } else if (solved[ansInd][1] !== this.value) {
             solved[ansInd][1] = this.value
             localStorage.setItem("solved",solved.join(";"))
           }
