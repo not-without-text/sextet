@@ -21,14 +21,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-			justify-content: center;
+      justify-content: center;
     }
-		body.levels {
-			justify-content: flex-start;
-		}
-		#levels {
-			margin: auto;
-		}
+    body.levels {
+      justify-content: flex-start;
+    }
+    #levels {
+      margin: auto;
+    }
     button, input {
       border-color: #251501;
       border-width: 10px;
@@ -213,7 +213,7 @@
           if (marker && unlock[stages] > solved.length) {
             lowRow.textContent = unlock[stages] === 1 ? "1 puzzle" : unlock[stages] + " solves"
           } else {
-            lowRow.textContent = "\u00A0" // non-breaking space
+            lowRow.textContent = " " // non-breaking space
             lowRow.display = "none"
           }
           lvTile.appendChild(numDiv)
@@ -290,7 +290,7 @@
             if (solved.length >= unlock[target] && document.querySelectorAll("#levels > div")[target]) {
               for (let x of document.querySelectorAll("#levels > div")[target].children) {
                 x.disabled = false
-                x.children[1].textContent = "\u00A0"
+                x.children[1].textContent = " "
                 x.children[1].style.display = "none"
               }
               target++
@@ -317,11 +317,11 @@
       document.querySelector("#"+curAct).classList.add("hidden")
       document.querySelector("#"+sector).classList.remove("hidden")
       curAct = sector
-			if (sector === "levels") {
-				document.body.classList.add("levels")
-			} else {
-				document.body.classList.remove("levels")
-			}
+      if (sector === "levels") {
+        document.body.classList.add("levels")
+      } else {
+        document.body.classList.remove("levels")
+      }
     }
     function newRun() {
       localStorage.removeItem('solved')
@@ -343,7 +343,7 @@
       target = 1
     }
     function goBack() {
-			console.log(3)
+      console.log(3)
       moveTo('levels')
       scrollTo(...oldPos)
       console.log(oldPos)
