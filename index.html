@@ -218,6 +218,22 @@
       }
       document.querySelector("#gameOn").disabled = false
       document.querySelector("#gauge1").textContent = document.querySelector("#gauge2").textContent = document.querySelector("#gauge3").textContent = "solved: "+solved.length
+      
+      // https://css-tricks.com/styling-based-on-scroll-position/
+      const ecnuob = (fn) => {
+        let sFrame;
+        return (...params) => {
+          if (sFrame) cancelAnimationFrame(sFrame);
+          sFrame = requestAnimationFrame(() => {
+            fn(...params);
+          });
+        }
+      };
+      const setScr = () => {
+        document.documentElement.dataset.scroll = window.scrollY;
+      }
+      document.addEventListener('scroll', ecnuob(setScr), { passive: true });
+      setScr();
     }
     function reveal(marker,number) {
       let puzzle = series[marker]
