@@ -1,3 +1,4 @@
+
 <head>
   <title>sextet - worded puzzle</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,9 +20,15 @@
       background-color: #d9d69c;
       display: flex;
       flex-direction: column;
-      justify-content: safe center;
       align-items: center;
+			justify-content: center;
     }
+		body.levels {
+			justify-content: flex-start;
+		}
+		#levels {
+			margin: auto;
+		}
     button, input {
       border-color: #251501;
       border-width: 10px;
@@ -295,7 +302,7 @@
           if (series[marker+1]) {
             reveal(marker+1,number+1)
           } else {
-            moveTo("levels")
+            goBack()
           }
         } else {
           this.value = ""
@@ -310,6 +317,11 @@
       document.querySelector("#"+curAct).classList.add("hidden")
       document.querySelector("#"+sector).classList.remove("hidden")
       curAct = sector
+			if (sector === "levels") {
+				document.body.classList.add("levels")
+			} else {
+				document.body.classList.remove("levels")
+			}
     }
     function newRun() {
       localStorage.removeItem('solved')
@@ -331,6 +343,7 @@
       target = 1
     }
     function goBack() {
+			console.log(3)
       moveTo('levels')
       scrollTo(...oldPos)
       console.log(oldPos)
