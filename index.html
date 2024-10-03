@@ -86,7 +86,7 @@
     }
     .little {
       font-size: 40px;
-      position: absolute;
+      position: fixed;
     }
     .hidden {
       display: none;
@@ -108,7 +108,14 @@
     }
     #gauge1, #gauge2 {
       top: 0px;
-      left: 0px
+      left: 0px;
+      border-radius: 20px;
+      padding: 5px;
+      transition: background-color 0.25s;
+      background-color: #edebc000;
+    }
+    html:not([data-scroll="0"]) #gauge1, html:not([data-scroll="0"]) #gauge2 {
+      background-color: #edebc088;
     }
     .lowRow {
       transform: translate(0,100%);
