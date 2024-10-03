@@ -330,6 +330,11 @@
       solved = []
       target = 1
     }
+    function goBack() {
+      moveTo('levels')
+      scrollTo(...oldPos)
+      console.log(oldPos)
+    }
   </script>
 </head>
 
@@ -359,6 +364,6 @@
     <button id="former" class="little">&lt; former</button>
     <button id="coming" class="little">coming &gt;</button>
     <span id="gauge1" class="little">solved: 0</span>
-    <button class="little" style="top:0px;right:0px" onclick="moveTo('levels');scrollTo(...oldPos)">return</button>
+    <button class="little" style="top:0px;right:0px" onclick="goBack()">return</button>
   </div>
 </body>
