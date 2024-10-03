@@ -176,10 +176,14 @@
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(";").map(x => [+x.split(",")[0],x.split(",")[1]]) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
+    let oldPos = [0,0]
     function loadup() {
       let curDiv = document.createElement("div")
       curDiv.style.marginBottom = "25px"
-      let create = (marker,number) => () => reveal(marker,number)
+      let create = (marker,number) => () => {
+        oldPos = [scrollX,scrollY];
+        reveal(marker,number)
+      }
       let number = 0;
       let stages = 0;
       document.querySelector("#levels").appendChild(curDiv)
@@ -355,6 +359,6 @@
     <button id="former" class="little">&lt; former</button>
     <button id="coming" class="little">coming &gt;</button>
     <span id="gauge1" class="little">solved: 0</span>
-    <button class="little" style="top:0px;right:0px" onclick="moveTo('levels')">return</button>
+    <button class="little" style="top:0px;right:0px" onclick="moveTo('levels');scrollTo(...oldPos)">return</button>
   </div>
 </body>
