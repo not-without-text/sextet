@@ -175,14 +175,14 @@
       [0,"fnlubj","how"],
       null,
       [0,"hexred","ff0000","f00","#ff0000","#f00"],
-      [0,"ffaabb","pink"],
+      [0,"ffaabb","pink","rose","peach"],
       [0,"accede","blue","sky blue","sky","light blue","pale blue","aqua","cyan","azure"],
       null
     ]
     function letLen(length) {
       return "calc(" + length + "ch + 32px)"
     }
-    let unlock = [0,1,6,11,14]
+    let unlock = [0,1,6,11,14,16]
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(";").map(x => [+x.split(",")[0],x.split(",")[1]]) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
