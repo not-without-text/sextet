@@ -15,7 +15,7 @@
       height: 100%;
       margin: 0;
     }
-    body, #center {
+    body, .center {
       background-color: #d9d69c;
       display: flex;
       flex-direction: column;
@@ -398,13 +398,13 @@
   </div>
   <div id="option" class="hidden">
     <span id="gauge3">solved: 0</span>
-    <div id="center">
+    <div class="center">
       <button class="longer" onclick="newRun()">newrun</button>
       <button class="longer" onclick="moveTo('screen')">return</button>
     </div>
   </div>
   <div id="credit" class="hidden">
-    <span style="width:100%;overflow:scroll">
+    <span style="width:100%;overflow:auto">
       &nbsp;sextet:<br>
       homage<br>
       toward<br>
@@ -416,8 +416,10 @@
       better<br>
       puzzle<br>
       <br>
-      <button class="longer" onclick="moveTo('screen')">return</button>
     </span>
+    <div class="center">
+      <button class="longer" onclick="moveTo('screen')">return</button>
+    </div>
   </div>
   <div id="puzzle" class="hidden">
     <span id="levNum">-1-</span>
