@@ -154,9 +154,9 @@
       [0,"datums","data"],
       [0,"axises","axes"],
       [1,"stadia","stadiums"],
-      [0,"opuses","opera"],
       [1,"rhombi","rhombuses"],
-      [0,"oyezes","oyesses"],
+      [1,"people","persons"],
+      [0,"opuses","opera"],
       null,
       [0,"lended","lent"],
       [0,"seeked","sought"],
@@ -181,18 +181,39 @@
       [0,"accede","blue","sky blue","sky","light blue","pale blue","aqua","cyan","azure"],
       null,
       [0,"trepid","fearful","afraid","scared","cowardly","unadventurous","timid","unconfident"],
-      [0,"wieldy","useful","usable","wieldable","functional","practical"],
+      [0,"wieldy","useful","usable","wieldable","functional","practical","easy"],
       [0,"quated","new","modern","current","fresh","recent","up to date","up-to-date","updated"],
       [0,"parage","praise","honor","honour","endorse","applaud","recognize","recognise","glorify","commend","compliment","admire"],
       [0,"incast","member","friend","insider","fellow","accepted","neighbor","neighbour","popular","liked","selected","favored","favoured","loved","valued"],
       [0,"peated","done","said","spoken","did","spoke","spoke","practiced","practised","performed","made","created"],
       [0,"witful","wise","smart","intelligent","clever","bright","sharp"],
       [0,"awless","wonderful","good","great","amazing","nice","fabulous","excellent","awesome","fantastic","pleasant"],
+      null,
+      [0,"vernal","spring"],
+      [0,"hotter","summer"],
+      [0,"colder","winter"],
+      [0,"season","autumn"],
+      [0,"tumble","fall"],
+      null,
+      [0,"plyply","two ply","two-ply"],
+      [0,"tttttt","sixties","sixty"],
+      [0,"liplip","tulip","tulips"],
+      [0,"ssssss","success","successes"],
+      [0,"murmur","tumors","tumor","tumour","tumours"],
+      [0,"derful","wonderful"],
+      null,
+      [0,"helium","he"],
+      [0,"sodium","na"],
+      [0,"ironed","feed"],
+      [0,"jargon","jar"],
+      [0,"tinore","snore"],
+      [0,"agfish","silverfish"],
+      [0,"neatal","neonatal"],
     ]
     function letLen(length) {
       return "calc(" + length + "ch + 32px)"
     }
-    let unlock = [0,1,6,11,15,17]
+    let unlock = [0,1,6,11,15,17,21,25,29]
     let solved = localStorage.getItem("solved") ? localStorage.getItem("solved").split(";").map(x => [+x.split(",")[0],x.split(",")[1]]) : []
     let target = Object.keys(unlock).find(x => unlock[x] > solved.length) || unlock.length
     let blocks = []
@@ -369,7 +390,7 @@
     sextet
     <button id="gameOn" class="longer" onclick="moveTo('levels')" disabled>launch</button>
     <button class="longer" onclick="moveTo('option')">option</button>
-    <button class="longer">credit</button>
+    <button class="longer" onclick="moveTo('credit')>credit</button>
   </div>
   <div id="levels" class="hidden">
     <button class="little" style="top:0px;right:0px" onclick="moveTo('screen')">return</button>
@@ -381,6 +402,20 @@
       <button class="longer" onclick="newRun()">newrun</button>
       <button class="longer" onclick="moveTo('screen')">return</button>
     </div>
+  </div>
+  <div id="credit" class="hidden">
+    <span>
+      &nbsp;sextet:<br>
+      homage<br>
+      toward<br>
+      <a href="https://jacklance.github.io/octogram">origin</a><br>
+      <br>
+      jlance<br>
+      dreamt<br>
+      really<br>
+      better<br>
+      puzzle
+    </span>
   </div>
   <div id="puzzle" class="hidden">
     <span id="levNum">-1-</span>
