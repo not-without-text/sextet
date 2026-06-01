@@ -110,7 +110,7 @@
       bottom: 0px;
       right: 50%
     }
-    #coming {
+    #latter {
       bottom: 0px;
       left: 50%
     }
@@ -296,10 +296,10 @@
       document.querySelector("#levNum").textContent = "-" + (number+1) + "-"
       
       document.querySelector("#former").onclick = () => reveal(marker-1,number-1)
-      document.querySelector("#coming").onclick = () => reveal(marker+1,number+1)
+      document.querySelector("#latter").onclick = () => reveal(marker+1,number+1)
       
       document.querySelector("#former").disabled = !series[marker-1]
-      document.querySelector("#coming").disabled = !series[marker+1]
+      document.querySelector("#latter").disabled = !series[marker+1]
       
       moveTo("puzzle")
       if (puzzle[0] === 0) {
@@ -405,20 +405,22 @@
   </div>
   <div id="credit" style="width:100%;overflow:auto" class="hidden">
     <span>
-      &nbsp;sextet:<br>
-      madeby<br>
+      sextet<br>
+      author<br>
       nwtext<br>
       <br>
       homage<br>
       toward<br>
       <a href="https://jacklance.github.io/octogram">origin</a><br>
-      <br>
+      madeby<br>
       jlance<br>
-      dreamt<br>
+      having<br>
       really<br>
       better<br>
       puzzle<br>
       <br>
+      restin<br>
+      repose<br>
     </span>
     <div class="center">
       <button class="longer" onclick="moveTo('screen')">return</button>
@@ -430,7 +432,7 @@
     <input id="answer" class="longer">
     <span id="bottom">sextet</span>
     <button id="former" class="little">&lt; former</button>
-    <button id="coming" class="little">coming &gt;</button>
+    <button id="latter" class="little">latter &gt;</button>
     <span id="gauge1" class="little">solved: 0</span>
     <button class="little" style="top:0px;right:0px" onclick="goBack()">return</button>
   </div>
